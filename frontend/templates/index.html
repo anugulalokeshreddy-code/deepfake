@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViT Deepfake Detector - Detect Synthetic Media with AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>🔍 ViT Deepfake Detector</h1>
+            </div>
+            <div class="navbar-menu">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/login" class="nav-link" id="loginBtn">Sign In</a>
+                <a href="/register" class="nav-link" id="registerBtn">Sign Up</a>
+                <a href="/dashboard" class="nav-link" id="dashboardBtn" style="display: none;">Dashboard</a>
+                <button class="logout-btn" id="logoutBtn" style="display: none;">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h2>Detect Deepfakes with Advanced AI 🚀</h2>
+            <p>Powered by Vision Transformers - Accurately identify synthetic and manipulated media</p>
+            <div class="btn-group" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/login" class="btn btn-primary" style="margin-top: 1.5rem;">Get Started Free</a>
+                <a href="#features" class="btn btn-secondary" style="margin-top: 1.5rem;">Explore Features</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="features" style="padding: 5rem 0; background: white;">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-dark);">Why Choose ViT Detector? ✨</h2>
+            <div class="features-grid">
+                <div class="feature-card" style="background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center;">
+                    <div class="feature-icon" style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Vision Transformer</h3>
+                    <p style="color: var(--text-gray);">State-of-the-art ViT architecture captures global image patterns for superior accuracy</p>
+                </div>
+
+                <div class="feature-card" style="background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center;">
+                    <div class="feature-icon" style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Lightning Fast</h3>
+                    <p style="color: var(--text-gray);">Get detection results in seconds with optimized AI inference</p>
+                </div>
+
+                <div class="feature-card" style="background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center;">
+                    <div class="feature-icon" style="font-size: 3rem; margin-bottom: 1rem;">🔐</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Ultra Secure</h3>
+                    <p style="color: var(--text-gray);">Enterprise-grade security with encrypted authentication</p>
+                </div>
+
+                <div class="feature-card" style="background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center;">
+                    <div class="feature-icon" style="font-size: 3rem; margin-bottom: 1rem;">📊</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Analytics</h3>
+                    <p style="color: var(--text-gray);">Track detection history with detailed confidence scores</p>
+                </div>
+
+                <div class="feature-card" style="background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center;">
+                    <div class="feature-icon" style="font-size: 3rem; margin-bottom: 1rem;">🎯</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Accurate</h3>
+                    <p style="color: var(--text-gray);">95%+ accuracy on diverse deepfake datasets</p>
+                </div>
+
+                <div class="feature-card" style="background: white; box-shadow: var(--shadow-md); border: 1px solid var(--border); border-radius: 1rem; padding: 2rem; text-align: center;">
+                    <div class="feature-icon" style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Cloud Ready</h3>
+                    <p style="color: var(--text-gray);">Easily scalable for enterprise deployments</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="info" style="padding: 5rem 0; background: var(--bg-light);">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--text-dark);">How It Works 🎬</h2>
+            <div class="steps" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem;">
+                <div class="step" style="text-align: center;">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5rem;">1</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Sign Up</h3>
+                    <p style="color: var(--text-gray);">Create a free account in seconds</p>
+                </div>
+
+                <div class="step" style="text-align: center;">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5rem;">2</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Upload</h3>
+                    <p style="color: var(--text-gray);">Choose an image to analyze</p>
+                </div>
+
+                <div class="step" style="text-align: center;">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5rem;">3</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Analyze</h3>
+                    <p style="color: var(--text-gray);">AI processes your image instantly</p>
+                </div>
+
+                <div class="step" style="text-align: center;">
+                    <div style="display: inline-flex; align-items: center; justify-content: center; width: 70px; height: 70px; background: var(--primary); color: white; border-radius: 50%; font-size: 1.75rem; font-weight: bold; margin-bottom: 1.5rem;">4</div>
+                    <h3 style="margin-bottom: 0.75rem; color: var(--text-dark);">Results</h3>
+                    <p style="color: var(--text-gray);">Get real/deepfake verdict with score</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section style="background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 4rem 0; text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.2rem; margin-bottom: 1rem;">Ready to Detect Deepfakes? 🎯</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95;">Join thousands of users already detecting synthetic media</p>
+            <a href="/register" class="btn btn-secondary" style="background: white; color: var(--primary); border: none; font-weight: 700; padding: 1rem 2rem; font-size: 1.05rem;">Start Free Today</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" style="background: var(--bg-dark); color: white; text-align: center; padding: 3rem 0;">
+        <div class="container">
+            <p style="margin-bottom: 0.5rem;">© 2026 ViT Deepfake Detector. Advancing AI Security.</p>
+            <p style="opacity: 0.8; font-size: 0.95rem;">Built with PyTorch • Vision Transformer • Flask</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+</body>
+</html>

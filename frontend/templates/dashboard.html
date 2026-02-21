@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ViT Deepfake Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <h1>🔍 ViT Deepfake Detector</h1>
+            </div>
+            <div class="navbar-menu">
+                <a href="/" class="nav-link">Home</a>
+                <span id="userDisplay" class="nav-text"></span>
+                <button class="logout-btn" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container dashboard-container">
+        <div class="dashboard-layout">
+            <!-- Sidebar Menu -->
+            <aside class="sidebar">
+                <div class="sidebar-menu">
+                    <button class="menu-item active" data-tab="upload">
+                        💾 Upload & Detect
+                    </button>
+                    <button class="menu-item" data-tab="results">
+                        📋 Detection History
+                    </button>
+                    <button class="menu-item" data-tab="stats">
+                        📊 Statistics
+                    </button>
+                    <button class="menu-item" data-tab="settings">
+                        ⚙️ Settings
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content -->
+            <main class="dashboard-content">
+                <!-- Upload Tab -->
+                <section id="upload" class="tab-content active">
+                    <h2>🎯 Upload Image for Analysis</h2>
+                    <p style="color: var(--text-gray); margin-bottom: 1.5rem;">Drag your image here or click to browse. Supports JPEG, PNG, GIF, BMP (Max 16MB)</p>
+                    
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">📸</div>
+                        <h3>Drop Your Image Here</h3>
+                        <p>or click to select a file</p>
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    </div>
+
+                    <div id="uploadStatus" class="upload-status"></div>
+
+                    <div id="detectionResult" class="detection-result" style="display: none;">
+                        <div class="result-image">
+                            <img id="resultImage" src="" alt="Uploaded image">
+                        </div>
+                        <div class="result-info">
+                            <h3 id="resultTitle"></h3>
+                            <div class="result-details">
+                                <p><strong>Prediction:</strong> <span id="predictionText"></span></p>
+                                <p><strong>Confidence:</strong> <span id="confidenceText"></span></p>
+                                <p><strong>Processing Time:</strong> <span id="processingTimeText"></span>s</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- History Tab -->
+                <section id="results" class="tab-content">
+                    <h2>📋 Detection History</h2>
+                    <div class="controls" style="margin-bottom: 1.5rem;">
+                        <button class="btn btn-primary" id="refreshBtn">🔄 Refresh</button>
+                    </div>
+                    <div id="historyContainer" class="history-grid"></div>
+                    <div id="historyEmpty" class="empty-state">
+                        <p>No detections yet. Upload an image to get started! 🚀</p>
+                    </div>
+                </section>
+
+                <!-- Stats Tab -->
+                <section id="stats" class="tab-content">
+                    <h2>📊 Your Statistics</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalDetections">0</div>
+                            <div class="stat-label">Total Detections</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="realCount">0</div>
+                            <div class="stat-label">Real Images</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="deepfakeCount">0</div>
+                            <div class="stat-label">Deepfakes Found</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="avgConfidence">0%</div>
+                            <div class="stat-label">Avg Confidence</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Tab -->
+                <section id="settings" class="tab-content">
+                    <h2>⚙️ Settings</h2>
+                    <div class="settings-section">
+                        <h3>Change Password</h3>
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" placeholder="Enter your current password">
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" placeholder="Enter your new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" placeholder="Confirm your new password">
+                        </div>
+                        <button class="btn btn-primary" id="changePasswordBtn">Update Password</button>
+                        <div id="passwordMessage" class="message"></div>
+                    </div>
+
+                    <div class="settings-section">
+                        <h3>Account Information</h3>
+                        <p id="accountInfo" style="color: var(--text-gray);"></p>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
+                    <h2>Account Settings</h2>
+                    <div class="settings-form">
+                        <h3>Change Password</h3>
+                        <form id="changePasswordForm">
+                            <div class="form-group">
+                                <label for="oldPassword">Current Password</label>
+                                <input type="password" id="oldPassword" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" required placeholder="At least 8 characters, 1 uppercase, 1 digit">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirmNewPassword">Confirm New Password</label>
+                                <input type="password" id="confirmNewPassword" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Update Password</button>
+                        </form>
+                        <div id="settingsMessage" class="message"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 ViT Deepfake Detector. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
