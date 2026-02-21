@@ -24,7 +24,12 @@ def validate_password(password):
 def register():
     """Register a new user"""
     try:
-        data = request.get_json()
+        # Get JSON data with better error handling
+        try:
+            data = request.get_json(force=True)
+        except Exception as json_error:
+            print(f"JSON parsing error: {json_error}")
+            return jsonify({'error': f'Invalid JSON format: {str(json_error)}'}), 400
         
         if not data:
             return jsonify({'error': 'No JSON data provided'}), 400
@@ -72,6 +77,7 @@ def register():
         }), 201
     
     except Exception as e:
+        print(f"Registration error: {str(e)}")
         db.session.rollback()
         return jsonify({'error': f'Registration failed: {str(e)}'}), 500
 
@@ -79,7 +85,11 @@ def register():
 def login():
     """Login user"""
     try:
-        data = request.get_json()
+        try:
+            data = request.get_json(force=True)
+        except Exception as json_error:
+            print(f"JSON parsing error: {json_error}")
+            return jsonify({'error': f'Invalid JSON format: {str(json_error)}'}), 400
         
         if not data:
             return jsonify({'error': 'No JSON data provided'}), 400

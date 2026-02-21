@@ -1,8 +1,9 @@
 import os
 import sys
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_login import LoginManager
 from flask_cors import CORS
+from werkzeug.exceptions import BadRequest
 
 # Add parent directory to path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -18,11 +19,12 @@ def create_app(config_name='development'):
     
     # Load configuration
     app.config.from_object(config[config_name])
+    app.config['JSON_SORT_KEYS'] = False
     config[config_name].init_app(app)
     
     # Initialize extensions
     db.init_app(app)
-    CORS(app)
+    CORS(app, supports_credentials=True)
     
     # Initialize Flask-Login
     login_manager = LoginManager()
@@ -32,6 +34,12 @@ def create_app(config_name='development'):
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(user_id)
+    
+    # Request handler for JSON parsing errors
+    @app.before_request
+    def handle_preflight():
+        if request.method == 'OPTIONS':
+            return '', 200
     
     # Register blueprints
     app.register_blueprint(auth_bp)
@@ -72,6 +80,11 @@ def create_app(config_name='development'):
     @app.errorhandler(404)
     def not_found(error):
         return jsonify({'error': 'Resource not found'}), 404
+    
+    @app.errorhandler(400)
+    def bad_request(error):
+        print(f"Bad Request: {str(error)}")
+        return jsonify({'error': f'Bad Request: {str(error)}'}), 400
     
     @app.errorhandler(500)
     def internal_error(error):
